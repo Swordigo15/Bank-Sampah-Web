@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Sampah;
 use Illuminate\Http\Request;
 
-class SampahController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.sampah.index');
+        return view('admin.user.index');
     }
 
     /**
@@ -20,7 +19,7 @@ class SampahController extends Controller
      */
     public function create()
     {
-        return view('admin.sampah.create');
+        return view('admin.user.create');
     }
 
     /**
@@ -34,7 +33,7 @@ class SampahController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Sampah $sampah)
+    public function show(string $id)
     {
         //
     }
@@ -42,15 +41,15 @@ class SampahController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Sampah $sampah)
+    public function edit(string $id)
     {
-        return view('admin.sampah.edit');
+        return view('admin.user.edit');
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Sampah $sampah)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -58,7 +57,7 @@ class SampahController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Sampah $sampah)
+    public function destroy(string $id)
     {
         //
     }
