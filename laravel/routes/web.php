@@ -6,7 +6,8 @@ use App\Http\Controllers\SampahController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [DashboardController::class, 'input'])->name('input');
+Route::get('/', function(){ return view('index'); })->name('input');
+Route::get('/input', [DashboardController::class, 'input'])->name('input');
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin.', 'as' => 'admin.'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
