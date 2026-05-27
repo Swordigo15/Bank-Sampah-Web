@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RoleController extends Controller
 {
@@ -12,7 +13,10 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return view('admin.role.index');
+        $data = Role::all();
+        return view('admin.role.index', [
+            'data' => $data
+        ]);
     }
 
     /**
@@ -28,7 +32,24 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            DB::beginTransaction();
+            $validatedData = $request->validate([
+                'name' => 'required',
+            ]);
+
+            Role::create($validatedData);
+
+            DB::commit();
+            return redirect()
+                ->route('admin.role.index')
+                ->with('success', 'Data berhasil disimpan!');
+        }catch(\Exception $e){
+            DB::rollBack();
+            return redirect()
+                ->route('admin.role.index')
+                ->with('error', 'Gagal menyimpan data!');
+        }
     }
 
     /**
@@ -44,7 +65,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        return view('admin.role.edit');
+        return view('admin.role.edit', compact('role'));
     }
 
     /**
@@ -52,7 +73,24 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        try{
+            DB::beginTransaction();
+            $validatedData = $request->validate([
+                'name' => 'required',
+            ]);
+
+            $role->update($validatedData);
+
+            DB::commit();
+            return redirect()
+                ->route('admin.role.index')
+                ->with('success', 'Data berhasil disimpan!');
+        }catch(\Exception $e){
+            DB::rollBack();
+            return redirect()
+                ->route('admin.role.index')
+                ->with('error', 'Gagal menyimpan data!');
+        }
     }
 
     /**
@@ -60,6 +98,18 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
+        try{
+            DB::beginTransaction();
+            $role->delete();
+            DB::commit();
+            return redirect()
+                ->route('admin.role.index')
+                ->with('success', 'Data berhasil dihapus!');
+        }catch(\Exception $e){
+            DB::rollBack();
+            return redirect()
+                ->route('admin.role.index')
+                ->with('error', 'Gagal menghapus data!');
+        }
     }
 }
