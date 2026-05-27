@@ -44,10 +44,13 @@
                             <td>{{ $d->name }}</td>
                             <td>
                                 <a href="{{ route($route . '.edit', $d->id) }}" class="btn btn-sm btn-primary">Edit</a>
-                                <form action="{{ route($route . '.destroy', $d->id) }}" method="POST" style="display: inline;">
+                                <form action="{{ route($route . '.destroy', $d->id) }}" method="POST" style="display: inline;" class="form-delete">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin?')">Delete</button>
+
+                                    <button type="submit" class="btn btn-sm btn-danger">
+                                        Delete
+                                    </button>
                                 </form>
                             </td>
                         </tr>
@@ -64,6 +67,27 @@
 <script>
 $(document).ready(function() {
     $('#dataTable').DataTable();
+
+    document.querySelectorAll('.form-delete').forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Data yang dihapus tidak dapat dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
+    });
 });
 </script>
 @endpush
