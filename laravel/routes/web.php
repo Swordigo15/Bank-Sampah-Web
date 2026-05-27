@@ -24,6 +24,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->n
 // Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/riwayat', [DashboardController::class, 'riwayat'])->name('riwayat');
     Route::get('/rekap', [DashboardController::class, 'rekap'])->name('rekap');
     Route::get('/export/{jenis}', [DashboardController::class, 'export'])->name('export');
     Route::resource('/sampah', SampahController::class);

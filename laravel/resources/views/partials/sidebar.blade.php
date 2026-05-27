@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('input') }}">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
@@ -13,7 +13,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ route('input') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -25,6 +25,12 @@
     <div class="sidebar-heading">
         Admin
     </div>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.riwayat') }}">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Riwayat Input</span></a>
+    </li>
 
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.rekap') }}">
