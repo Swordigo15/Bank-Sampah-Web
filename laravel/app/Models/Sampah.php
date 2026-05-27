@@ -13,6 +13,6 @@ class Sampah extends Model
 
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class)->withPivot('total');
+        return $this->belongsToMany(User::class, 'user_sampah', 'sampah_id', 'user_id')->withPivot('total');
     }
 }

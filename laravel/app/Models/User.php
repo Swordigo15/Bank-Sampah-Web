@@ -43,6 +43,6 @@ class User extends Authenticatable
 
     public function sampahs(): BelongsToMany
     {
-        return $this->belongsToMany(Sampah::class)->withPivot('total');
+        return $this->belongsToMany(Sampah::class, 'user_sampah', 'user_id', 'sampah_id')->withPivot('total');
     }
 }

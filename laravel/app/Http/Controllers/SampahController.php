@@ -12,7 +12,10 @@ class SampahController extends Controller
      */
     public function index()
     {
-        return view('admin.sampah.index');
+        $data = Sampah::all();
+        return view('admin.sampah.index', [
+            'data' => $data
+        ]);
     }
 
     /**

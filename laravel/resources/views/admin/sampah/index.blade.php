@@ -25,6 +25,7 @@
                             <thead>
                                 <tr>
                                     <th>Nama</th>
+                                    <th>Satuan</th>
                                     <th>Total</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -32,16 +33,27 @@
                             <tfoot>
                                 <tr>
                                     <th>Nama</th>
+                                    <th>Satuan</th>
                                     <th>Total</th>
                                     <th>Aksi</th>
                                 </tr>
                             </tfoot>
                             <tbody>
+                                @foreach ($data as $item)
                                 <tr>
-                                    <td>Tiger Nixon</td>
-                                    <td>System Architect</td>
-                                    <td>Edinburgh</td>
+                                    <td>{{ $item->name }}</td>
+                                    <td>Rp. {{ $item->harga }} / {{ $item->jumlah_satuan.' '.$item->satuan }}</td>
+                                    <td>{{ $item->users->count() }}</td>
+                                    <td>
+                                        <a href="{{ route($route . '.edit', $item->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                                        <form action="{{ route($route . '.destroy', $item->id) }}" method="POST" style="display: inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                        </form>
+                                    </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
