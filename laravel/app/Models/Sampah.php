@@ -7,8 +7,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Sampah extends Model
 {
-    public function users(): BelongsToMany
+    protected $table = 'sampahs';
 
+    protected $guarded = ['id'];
+
+    public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class)->withPivot('total');
     }
