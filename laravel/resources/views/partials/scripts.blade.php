@@ -10,9 +10,7 @@
 
 <!-- Page level plugins -->
 <script src="{{ URL::asset('vendor/chart.js/Chart.min.js') }}"></script>
-
-<!-- Page level custom scripts -->
-<script src="{{ URL::asset('js/demo/chart-area-demo.js') }}"></script>
-<script src="{{ URL::asset('js/demo/chart-pie-demo.js') }}"></script>
+<script src="{{ URL::asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ URL::asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 {{-- <script src="{{ URL::asset('vendor/jquery/jquery.min.js') }}"></script> --}}
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
