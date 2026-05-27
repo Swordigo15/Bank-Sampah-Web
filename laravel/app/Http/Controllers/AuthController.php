@@ -31,7 +31,7 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended('/dashboard');
+        return redirect()->intended('/');
     }
 
     /* ================= REGISTER ================= */
@@ -45,19 +45,19 @@ class AuthController extends Controller
     {
         $request->validate([
             'email'     => 'required|string|max:255|unique:users',
-            'nama'     => 'required|string|max:255',
+            'name'     => 'required|string|max:255',
             'password' => 'required|min:6|confirmed',
         ]);
 
         User::create([
             'email'     => $request->email,
-            'nama'     => $request->nama,
+            'name'     => $request->name,
             'password' => bcrypt($request->password),
             'role_id'   => 2, //1 : admin, 2 : user
         ]);
 
         Auth::attempt($request->only('email', 'password'));
-        return redirect('/dashboard');
+        return redirect('/');
     }
 
     /* ================= LOGOUT ================= */

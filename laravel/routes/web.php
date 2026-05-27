@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/template', function(){ return view('index'); })->name('template');
+Route::get('/template/login', function(){ return view('auth.login'); })->name('template.login');
 Route::get('/', [DashboardController::class, 'input'])->name('input');
 Route::post('/input', [DashboardController::class, 'store'])->name('admin.dashboard.store');
 
@@ -21,8 +22,8 @@ Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
-// Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
+// Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/riwayat', [DashboardController::class, 'riwayat'])->name('riwayat');
     Route::get('/rekap', [DashboardController::class, 'rekap'])->name('rekap');
