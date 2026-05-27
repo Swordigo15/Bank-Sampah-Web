@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sampah;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SampahController extends Controller
 {
@@ -31,7 +32,27 @@ class SampahController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            DB::beginTransaction();
+            $validatedData = $request->validate([
+                'name' => 'required',
+                'harga' => 'required|numeric',
+                'jumlah_satuan' => 'required|numeric|min:0',
+                'satuan' => 'required'
+            ]);
+
+            Sampah::create($validatedData);
+
+            DB::commit();
+            return redirect()
+                ->route('admin.sampah.index')
+                ->with('success', 'Data berhasil disimpan!');
+        }catch(\Exception $e){
+            DB::rollBack();
+            return redirect()
+                ->route('admin.sampah.index')
+                ->with('error', 'Gagal menyimpan data!');
+        }
     }
 
     /**
@@ -47,7 +68,7 @@ class SampahController extends Controller
      */
     public function edit(Sampah $sampah)
     {
-        return view('admin.sampah.edit');
+        return view('admin.sampah.edit', compact('sampah'));
     }
 
     /**
@@ -55,7 +76,27 @@ class SampahController extends Controller
      */
     public function update(Request $request, Sampah $sampah)
     {
-        //
+        try{
+            DB::beginTransaction();
+            $validatedData = $request->validate([
+                'name' => 'required',
+                'harga' => 'required|numeric',
+                'jumlah_satuan' => 'required|numeric|min:0',
+                'satuan' => 'required'
+            ]);
+
+            $sampah->update($validatedData);
+
+            DB::commit();
+            return redirect()
+                ->route('admin.sampah.index')
+                ->with('success', 'Data berhasil disimpan!');
+        }catch(\Exception $e){
+            DB::rollBack();
+            return redirect()
+                ->route('admin.sampah.index')
+                ->with('error', 'Gagal menyimpan data!');
+        }
     }
 
     /**
@@ -63,6 +104,18 @@ class SampahController extends Controller
      */
     public function destroy(Sampah $sampah)
     {
-        //
+        try{
+            DB::beginTransaction();
+            $sampah->delete();
+            DB::commit();
+            return redirect()
+                ->route('admin.sampah.index')
+                ->with('success', 'Data berhasil dihapus!');
+        }catch(\Exception $e){
+            DB::rollBack();
+            return redirect()
+                ->route('admin.sampah.index')
+                ->with('error', 'Gagal menghapus data!');
+        }
     }
 }

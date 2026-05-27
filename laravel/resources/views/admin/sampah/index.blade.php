@@ -18,12 +18,14 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     {{-- <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6> --}}
+                    <a class="btn btn-success" href="{{ route('admin.sampah.create') }}">Tambah Sampah</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
+                                    <th>#</th>
                                     <th>Nama</th>
                                     <th>Satuan</th>
                                     <th>Total</th>
@@ -32,6 +34,7 @@
                             </thead>
                             <tfoot>
                                 <tr>
+                                    <th>#</th>
                                     <th>Nama</th>
                                     <th>Satuan</th>
                                     <th>Total</th>
@@ -41,6 +44,7 @@
                             <tbody>
                                 @foreach ($data as $item)
                                 <tr>
+                                    <td>{{ $item->id }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>Rp. {{ $item->harga }} / {{ $item->jumlah_satuan.' '.$item->satuan }}</td>
                                     <td>{{ $item->users->count() }}</td>
@@ -49,7 +53,7 @@
                                         <form action="{{ route($route . '.destroy', $item->id) }}" method="POST" style="display: inline;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin?')">Delete</button>
                                         </form>
                                     </td>
                                 </tr>
