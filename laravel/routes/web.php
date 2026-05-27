@@ -7,7 +7,7 @@ use App\Http\Controllers\SampahController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/template', function(){ return view('index'); })->name('input');
+Route::get('/template', function(){ return view('index'); })->name('template');
 Route::get('/', [DashboardController::class, 'input'])->name('input');
 Route::post('/input', [DashboardController::class, 'store'])->name('admin.dashboard.store');
 
