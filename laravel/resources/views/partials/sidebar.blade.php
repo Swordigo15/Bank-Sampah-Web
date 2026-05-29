@@ -12,7 +12,7 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
+    <li class="nav-item {{ Request::is('/input*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('input') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
@@ -26,33 +26,33 @@
         Admin
     </div>
 
-    <li class="nav-item">
+    <li class="nav-item {{ Request::is('admin/riwayat*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('admin.riwayat') }}">
-            <i class="fas fa-fw fa-chart-area"></i>
+            <i class="bi bi-clock-history"></i>
             <span>Riwayat Input</span></a>
     </li>
 
-    <li class="nav-item">
+    <li class="nav-item {{ Request::is('admin/rekap*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('admin.rekap') }}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Rekap Data</span></a>
     </li>
 
-    <li class="nav-item">
+    <li class="nav-item {{ Request::is('admin/sampah*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('admin.sampah.index') }}">
-            <i class="fas fa-fw fa-chart-area"></i>
+            <i class="bi bi-box2-fill"></i>
             <span>Sampah</span></a>
     </li>
 
-    <li class="nav-item">
+    <li class="nav-item {{ Request::is('admin/user*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('admin.user.index') }}">
-            <i class="fas fa-fw fa-chart-area"></i>
+            <i class="bi bi-person-fill"></i>
             <span>User</span></a>
     </li>
 
-    <li class="nav-item">
+    <li class="nav-item {{ Request::is('admin/role*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('admin.role.index') }}">
-            <i class="fas fa-fw fa-chart-area"></i>
+            <i class="bi bi-person-gear"></i>
             <span>Role</span></a>
     </li>
 
