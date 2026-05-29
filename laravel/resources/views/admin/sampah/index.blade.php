@@ -47,7 +47,7 @@
                             <td>{{ $d->id }}</td>
                             <td>{{ $d->name }}</td>
                             <td>Rp. {{ $d->harga }} / {{ $d->jumlah_satuan.' '.$d->satuan }}</td>
-                            <td>{{ $d->users->count() }} {{ $d->satuan }}</td>
+                            <td>{{ $d->inputHistory->sum('pivot.total') }} {{ $d->satuan }}</td>
                             <td>
                                 <a href="{{ route($route . '.edit', $d->id) }}" class="btn btn-sm btn-primary">Edit</a>
                                 <form action="{{ route($route . '.destroy', $d->id) }}" method="POST" style="display: inline;" class="form-delete">

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/template', function(){ return view('index'); })->name('template');
 Route::get('/template/login', function(){ return view('auth.login'); })->name('template.login');
 Route::get('/', [DashboardController::class, 'input'])->name('input');
-Route::post('/input', [DashboardController::class, 'store'])->name('admin.dashboard.store');
+Route::post('/input', [DashboardController::class, 'store'])->name('input.store');
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login.show');
 Route::post('/login', [AuthController::class, 'login'])->name('login');

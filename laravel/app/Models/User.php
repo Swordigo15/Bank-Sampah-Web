@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -41,8 +42,8 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
-    public function sampahs(): BelongsToMany
+    public function inputHistories(): HasMany
     {
-        return $this->belongsToMany(Sampah::class, 'user_sampah', 'user_id', 'sampah_id')->withPivot('total');
+        return $this->hasMany(InputHistory::class);
     }
 }

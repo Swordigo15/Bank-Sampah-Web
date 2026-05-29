@@ -11,8 +11,8 @@ class Sampah extends Model
 
     protected $guarded = ['id'];
 
-    public function users(): BelongsToMany
+    public function inputHistory(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'user_sampah', 'sampah_id', 'user_id')->withPivot('total');
+        return $this->belongsToMany(InputHistory::class, 'user_sampah', 'sampah_id', 'input_history_id')->withPivot('total', 'total_harga');
     }
 }
